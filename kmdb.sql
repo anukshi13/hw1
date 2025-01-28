@@ -220,7 +220,16 @@ VALUES
 .print "======"
 .print ""
 
-SELECT 
-    title,year_released,mpaa_rating,name, 
-FROM movies
-JOIN studios ON movies.studio_id = studios.studio_id;
+SELECT title,year_released,mpaa_rating,name FROM movies
+JOIN studios ON movies.studio_id = studios.id;
+
+.print ""
+.print "Top Cast"
+.print "========"
+.print ""
+
+SELECT movies.title, actors.name, roles.character_name FROM roles
+JOIN movies ON roles.movie_id = movies.id
+JOIN actors ON roles.actor_id = actors.id
+ORDER BY movies.title, roles.id;
+
